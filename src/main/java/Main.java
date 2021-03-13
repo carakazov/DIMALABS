@@ -4,24 +4,15 @@ import model.Cinema;
 import model.License;
 
 import java.sql.Date;
+import java.util.List;
 
 
 public class Main {
     public static void main(String[] args) {
-        CinemaDao cinemaDao = new CinemaDao();
         LicenseDao licenseDao = new LicenseDao();
-        Date date = new Date(0);
-        License license = new License(date);
-        licenseDao.create(license);
-        License createdLicense = licenseDao.read(2);//1
-        Cinema cinema = new Cinema("Moscow", 10, createdLicense.getId());
-        cinemaDao.create(cinema);
-        cinema.setRating(15);
-        Cinema readCinema = cinemaDao.get(3);//1
-        System.out.println(readCinema.getId());
-        System.out.println(readCinema.getRating());
-        System.out.println(readCinema.getAddress());
-        System.out.println(readCinema.getLicenseId());
-        cinemaDao.delete(1);
+        List<License> licenses = licenseDao.getAll();
+        for(License license : licenses){
+            System.out.println(license.getReceivingDate());
+        }
     }
 }

@@ -50,6 +50,7 @@ public class CinemaDao extends Dao{
 
     public List<Cinema> getAll(){
         try{
+             connection = dataSource.getConnection(user, password);
              List<Cinema> cinemas = new ArrayList<>();
              String selectQuery = "SELECT * FROM cinema_hub.cinemas";
              PreparedStatement preparedStatement = connection.prepareStatement(selectQuery);
