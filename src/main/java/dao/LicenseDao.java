@@ -59,4 +59,16 @@ public class LicenseDao extends Dao{
             return null;
         }
     }
+
+    public void delete(int id){
+        try{
+            connection = dataSource.getConnection(user, password);
+            String deleteQuery = "DELETE FROM cinema_hub.licenses WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery);
+            preparedStatement.setInt(1, id);
+            preparedStatement.execute();
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+    }
 }
